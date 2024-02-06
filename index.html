@@ -5,14 +5,92 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Demo</title>
-    <script type="text/javascript">
-        window.onload = function() {
-            alert('This is a demonstration of what could happen if a malicious QR code is scanned. Your device has not been hacked, but always be cautious with QR codes.');
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 16px; /* Base font size */
         }
-    </script>
+        .modal {
+            display: flex;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            font-size: 18px; /* Font size for modal content */
+        }
+        .modal-header {
+            font-size: 30px; /* Larger font size for the header */
+            color: red;
+            margin-bottom: 10px;
+        }
+        .close-text {
+            cursor: pointer;
+            color: #aaa;
+            font-size: 20px; /* Font size for the close text */
+            text-align: center;
+            margin-top: 10px;
+        }
+        .close-text:hover,
+        .close-text:focus {
+            color: black;
+            text-decoration: none;
+        }
+        @media (max-width: 600px) {
+            .modal-content {
+                width: 95%;
+            }
+        }
+        .warning-icon {
+            font-size: 48px; /* Larger size for the warning icon */
+            display: block; /* To ensure it appears on a new line */
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the QR Code Security Demo</h1>
-    <p>This page is part of a cybersecurity education session. The alert you saw is a demonstration of how QR codes can potentially be misused. Remember, always be cautious and ensure the safety of QR codes before scanning them.</p>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="warning-icon">⚠️</span>
+    <div class="modal-header">Your phone has been hacked!!!</div>
+    <p>This is a demonstration. Remember, always be cautious with QR codes.</p>
+    <div class="close-text" id="closeBtn">Close</div>
+  </div>
+</div>
+
+<script>
+document.getElementById("closeBtn").onclick = function() {
+    document.getElementById("myModal").style.display = "none";
+};
+
+// Check if the browser supports the Vibration API
+function vibrateOnLoad() {
+    if (navigator.vibrate) {
+        navigator.vibrate(200); // Vibrate for 200 milliseconds
+    }
+}
+
+// Call the vibrate function once the window has fully loaded
+window.onload = vibrateOnLoad;
+</script>
+
 </body>
 </html>
