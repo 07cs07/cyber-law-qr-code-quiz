@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Demo</title>
+    <title>Cyber Crime and Law Session</title>
     <style>
+    @keyframes blinker {
+          50% { opacity: 0; }
+        }
+        .blinking {
+          animation: blinker 0.5s linear infinite;
+        }
         body, html {
             height: 100%;
             margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            font-size: 16px; /* Base font size */
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+        .logo {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 100px; /* Set the size of your logo */
         }
         .modal {
             display: flex;
@@ -37,31 +51,43 @@
             font-size: 18px; /* Font size for modal content */
         }
         .modal-header {
-            font-size: 30px; /* Larger font size for the header */
+            font-size: 24px; /* Font size for the modal header */
             color: red;
             margin-bottom: 10px;
         }
         .close-text {
             cursor: pointer;
             color: #aaa;
-            font-size: 20px; /* Font size for the close text */
-            text-align: center;
-            margin-top: 10px;
+            font-size: 18px; /* Font size for the close text */
+            margin-top: 20px;
         }
         .close-text:hover,
         .close-text:focus {
             color: black;
             text-decoration: none;
         }
+        .content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            margin-top: 50px; /* Added margin for spacing */
+        }
+        .content h1 {
+            font-size: 28px; /* Larger font size for the title */
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .content p {
+            font-size: 18px; /* Font size for the body text */
+            color: #666;
+            margin-bottom: 20px;
+        }
         @media (max-width: 600px) {
-            .modal-content {
+            .modal-content,
+            .content {
                 width: 95%;
             }
-        }
-        .warning-icon {
-            font-size: 48px; /* Larger size for the warning icon */
-            display: block; /* To ensure it appears on a new line */
-            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -69,27 +95,23 @@
 
 <div id="myModal" class="modal">
   <div class="modal-content">
-    <span class="warning-icon">⚠️</span>
-    <div class="modal-header">Your phone has been hacked!!!</div>
+    <div class="modal-header blinking">⚠️ Your phone has been hacked!</div>
     <p>This is a demonstration. Remember, always be cautious with QR codes.</p>
     <div class="close-text" id="closeBtn">Close</div>
   </div>
 </div>
 
+<div class="content" id="mainContent">
+    <h1>Welcome to the Cyber Crime and Law session</h1>
+    <p>This page is part of a cybersecurity education session. The alert you saw is a demonstration of how QR codes can potentially be misused. Remember, always be cautious and ensure the safety of QR codes before scanning them.</p>
+<img src="/logo1.png" alt="V & A Law Firm" class="logo">
+</div>
+
 <script>
 document.getElementById("closeBtn").onclick = function() {
     document.getElementById("myModal").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
 };
-
-// Check if the browser supports the Vibration API
-function vibrateOnLoad() {
-    if (navigator.vibrate) {
-        navigator.vibrate(200); // Vibrate for 200 milliseconds
-    }
-}
-
-// Call the vibrate function once the window has fully loaded
-window.onload = vibrateOnLoad;
 </script>
 
 </body>
